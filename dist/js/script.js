@@ -227,12 +227,21 @@ window.addEventListener('DOMContentLoaded', () => {
       this.title = title;
       this.descr = descr;
       this.price = price;
+      for (var _len = arguments.length, classes = new Array(_len > 6 ? _len - 6 : 0), _key = 6; _key < _len; _key++) {
+        classes[_key - 6] = arguments[_key];
+      }
+      this.classes = classes;
       this.parent = document.querySelector(parentSelector);
     }
     render() {
       const element = document.createElement('div');
+      if (this.classes.length === 0) {
+        this.element = 'menu__item';
+        element.classList.add(this.element);
+      } else {
+        this.classes.forEach(className => element.classList.add(className));
+      }
       element.innerHTML = `
-                <div class="menu__item">
                     <img src=${this.src} alt=${this.alt}>
                     <h3 class="menu__item-subtitle">${this.title}</h3>
                     <div class="menu__item-descr">${this.descr}</div>
@@ -241,7 +250,6 @@ window.addEventListener('DOMContentLoaded', () => {
                         <div class="menu__item-cost">Цена:</div>
                         <div class="menu__item-total"><span>${this.price}</span> в день</div>
                     </div>
-                </div>
             `;
       this.parent.append(element);
     }
