@@ -275,25 +275,25 @@ window.addEventListener('DOMContentLoaded', () => {
                 margin: 0 auto;
             `;
       form.insertAdjacentElement('afterend', statusMessage);
-      const request = new XMLHttpRequest();
-      request.open('POST', 'server.php');
-      request.setRequestHeader('Content-type', 'application/json');
       const formData = new FormData(form);
       const object = {};
       formData.forEach((value, key) => {
         object[key] = value;
       });
-      const json = JSON.stringify(object);
-      request.send(json);
-      request.addEventListener('load', () => {
-        if (request.status === 200) {
-          console.log(request.response);
-          showThanksModal(messages.success);
-          form.reset();
-          statusMessage.remove();
-        } else {
-          showThanksModal(messages.failure);
-        }
+      fetch('server.php', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: json = JSON.stringify(object)
+      }).then(data => data.text()).then(data => {
+        console.log(data);
+        showThanksModal(messages.success);
+        statusMessage.remove();
+      }).catch(() => {
+        showThanksModal(messages.failure);
+      }).finally(() => {
+        form.reset();
       });
     });
   }
