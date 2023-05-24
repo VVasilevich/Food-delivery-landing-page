@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     calc();
     forms('form', modalTimerID);
-    menu();
+    menu('.menu .container');
     modal('[data-modal]', '.modal', modalTimerID);
     slider({
         container: '.offer__slider',

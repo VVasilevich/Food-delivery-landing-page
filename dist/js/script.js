@@ -115,7 +115,7 @@ window.addEventListener('DOMContentLoaded', () => {
   const modalTimerID = setTimeout(() => Object(_modules_generalFunctions__WEBPACK_IMPORTED_MODULE_7__["openModal"])('.modal', modalTimerID), 50000);
   Object(_modules_calc__WEBPACK_IMPORTED_MODULE_0__["default"])();
   Object(_modules_forms__WEBPACK_IMPORTED_MODULE_1__["default"])('form', modalTimerID);
-  Object(_modules_menu__WEBPACK_IMPORTED_MODULE_2__["default"])();
+  Object(_modules_menu__WEBPACK_IMPORTED_MODULE_2__["default"])('.menu .container');
   Object(_modules_modal__WEBPACK_IMPORTED_MODULE_3__["default"])('[data-modal]', '.modal', modalTimerID);
   Object(_modules_slider__WEBPACK_IMPORTED_MODULE_4__["default"])({
     container: '.offer__slider',
@@ -359,7 +359,7 @@ function addZero(num) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "./src/js/services/services.js");
 
-function menu() {
+function menu(container) {
   class MenuCard {
     constructor(src, alt, title, descr, price, parentSelector) {
       this.src = src;
@@ -403,7 +403,7 @@ function menu() {
         descr,
         price
       } = _ref;
-      new MenuCard(img, altimg, title, descr, price, '.menu .container').render();
+      new MenuCard(img, altimg, title, descr, price, container).render();
     });
   });
 }
